@@ -7,7 +7,6 @@ define(function (require, exports, module){
             mutations.forEach(function(mutation) {
                 if (mutation.type === 'childList' && mutation.addedNodes && mutation.addedNodes.length === 1 &&
                    $(mutation.addedNodes[0]).hasClass('modal-wrapper')){
-                    console.log(mutation.addedNodes);
                     process(mutation);
                 }
             });
