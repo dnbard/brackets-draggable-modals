@@ -3,7 +3,7 @@
     "title": "Draggable modals",
     "description": "Modal windows in Brackets now can be dragged with mouse across the screen.",
     "homepage": "https://github.com/dnbard/brackets-draggable-modals",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "Alex Bardanov",
     "license": "MIT",
     "engines": {
