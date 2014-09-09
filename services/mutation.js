@@ -1,5 +1,6 @@
 define(function (require, exports, module){
     var config = require('../config'),
+        $ = window.jQuery,
         target = $('body')[0];
 
     function init(){
@@ -19,30 +20,34 @@ define(function (require, exports, module){
         var node = $(mutation.addedNodes[0]),
             modalHeader = node.find('.modal-header'),
             modal = node.find('div.modal'),
-            position = {x: 0, y: 0};
+            position = {x: 0, y: 0},
+            $document;
 
         if (!modalHeader){
             return;
         }
 
+        $document = $(document);
+
         modal.css('position', 'absolute');
-        modal.css('top', ($(document).height() - modal.height()) / 2 + 'px');
-        modal.css('left', ($(document).width() - modal.width()) / 2 + 'px');
+        modal.css('top', ($document.height() - modal.height()) / 2 + 'px');
+        modal.css('left', ($document.width() - modal.width()) / 2 + 'px');
 
         modalHeader.on('mousedown', function(){
             position.x = 0;
             position.y = 0;
 
             node.on('mousemove', function(event){
-                if (position.x === 0){
+                var offsetX, offsetY;
+
+                if (position.x === 0 && position.y === 0){
                     position.x = -event.clientX;
                     position.y = -event.clientY;
                 } else {
-                    var offsetX = -(position.x - event.clientX),
-                        offsetY = -(position.y - event.clientY);
+                    offsetX = -(position.x - event.clientX);
+                    offsetY = -(position.y - event.clientY);
 
                     modal.css('left', parseInt(modal.css('left').replace('px', '')) + offsetX + 'px');
-
                     modal.css('top', parseInt(modal.css('top').replace('px', '')) + offsetY + 'px');
                 }
 
